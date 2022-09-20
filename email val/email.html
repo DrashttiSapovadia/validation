@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title >
+            email registration
+        </title>
+    </head>
+
+<body>
+    <label > enter your email id:  </label>
+    <input type="text" id="txtEmail" onkeyup="IsValidEmail()"/>
+    <span id="lblError" style="color:red"></span>
+    <br />
+    <br />
+
+    <script >
+   
+        function IsValidEmail() {
+
+            var email = document.getElementById("txtEmail");
+            var dot = email.value.split('@');
+            
+            
+            if(email.value === '')
+            {
+                lblError.innerHTML = "email cannot be empty.";
+                return false;
+            }
+
+            if(email.value.includes(' '))
+            {
+                lblError.innerHTML = "no space allowed";
+                return false;
+            }
+
+            if(email.value.split('@')[1].split('.')[0].length==0){
+                lblError.innerHTML = "there shopuld be atlestv 1 character btwn @ and .";
+                return false;
+            }
+           
+            if(dot.length !=2)
+            {
+                lblError.innerHTML = "only 1 @ is allowed";
+                return false;
+            }
+            if(dot[1].split('.')[1].length<2 || dot[1].split('.')[1].length>3 )
+                {
+                    lblError.innerHTML = "only 2 or 3 charaters are allowed after . ";
+                return false;
+                }
+
+            if(email.value.split('@')[0].length<=0)
+            {
+                lblError.innerHTML = "atleat one character should be there before @ ";
+                return false;
+            } 
+
+            
+            if(validation()){
+                lblError.innerHTML = "Only alphabets after .";
+                return false;
+            }
+
+            if( dot[1].split('.').length!=2)
+            {
+                lblError.innerHTML = "Only 1 . is allowed";
+                return false;
+            }
+
+            lblError.innerHTML = "valid email.";
+            return true;
+        };
+
+
+        function validation()
+        {
+            const numbers = ["0","1","2","3","4","5","6","7","8","9"];
+            const email = document.getElementById("txtEmail").value;
+            var dot = email.split('@');
+            for (let i = 0; i < dot[1].split('.')[1].length; i++) 
+            {
+                // const element = email.split('.')[1][i];
+                if(numbers.indexOf(dot[1].split('.')[1].charAt(i))>=0)
+                {
+                    return true
+                }
+                
+            }
+
+            return false
+        }
+        
+
+        
+    </script>       
+</body>
+</html>
